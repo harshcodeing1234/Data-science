@@ -1,0 +1,2 @@
+DROP TABLE USERS CASCADE CONSTRAINTS;
+drop table entries;
