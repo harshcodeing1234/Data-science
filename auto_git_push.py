@@ -2,32 +2,49 @@ import subprocess
 import time
 from datetime import datetime
 
-print("🚀 Auto GitHub Push Started (SSH Mode)")
+print("🚀 Auto GitHub Push Started (SSH • Verbose Mode)")
+
+INTERVAL = 300  # 5 minutes
+
+def now():
+    return datetime.now().strftime("%H:%M:%S")
 
 while True:
     try:
-        # Stage changes
+        print(f"\n[{now()}] Checking for changes...")
+
+        # Stage all changes
         subprocess.run("git add .", shell=True, check=True)
 
-        # Prepare commit message
+        # Commit changes
         msg = f'auto update {datetime.now().strftime("%d-%m-%Y %H:%M")}'
-        
-        # Commit changes (ignore if no changes)
-        commit_result = subprocess.run(f'git commit -m "{msg}"', shell=True, capture_output=True, text=True)
-        if "nothing to commit" in commit_result.stdout.lower():
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] Nothing to commit.")
-        else:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] Committed changes.")
+        commit = subprocess.run(
+            f'git commit -m "{msg}"',
+            shell=True,
+            capture_output=True,
+            text=True
+        )
 
-            # Push via SSH
-            push_result = subprocess.run("git push origin main", shell=True, capture_output=True, text=True)
-            if push_result.returncode == 0:
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] Pushed successfully.")
+        # Nothing to commit
+        if "nothing to commit" in commit.stdout.lower():
+            print(f"[{now()}] No changes detected.")
+        else:
+            print(f"[{now()}] Committed changes.")
+
+            # Push changes (LIVE OUTPUT)
+            print(f"[{now()}] Pushing to GitHub...")
+            push = subprocess.run("git push origin main", shell=True)
+
+            if push.returncode == 0:
+                print(f"[{now()}] Pushed successfully.")
             else:
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] Push failed:\n{push_result.stderr}")
+                print(f"[{now()}] Push failed.")
+
+    except subprocess.CalledProcessError as e:
+        print(f"[{now()}] Git command error:", e)
 
     except Exception as e:
-        print(f"[{datetime.now().strftime('%H:%M:%S')}] Error: {e}")
+        print(f"[{now()}] Unexpected error:", e)
 
-    # Wait 5 minutes
-    time.sleep(300)
+    print(f"[{now()}] Sleeping for {INTERVAL // 60} minutes...")
+    time.sleep(INTERVAL)
