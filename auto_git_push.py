@@ -1,26 +1,24 @@
 import subprocess
 import time
-import threading
 from datetime import datetime
 
-def auto_git_push():
-    while True:
-        try:
-            subprocess.run(["git", "add", "."], check=True)
+def run(cmd):
+    return subprocess.run(cmd, capture_output=True, text=True)
 
-            msg = f'auto update {datetime.now().strftime("%d-%m-%Y %H:%M")}'
-            subprocess.run(["git", "commit", "-m", msg], check=True)
-
-            subprocess.run(["git", "push", "origin", "main"], check=True)
-
-            print("Pushed at", datetime.now())
-        except subprocess.CalledProcessError:
-            print("No changes to commit")
-
-        time.sleep(300)  # 5 minutes
-
-thread = threading.Thread(target=auto_git_push, daemon=True)
-thread.start()
+print("🚀 Auto GitHub Push Started (Smart Mode)")
 
 while True:
-    time.sleep(1)  # main thread alive
+    status = run(["git", "status", "--porcelain"])
+
+    if status.stdout.strip():   # changes exist
+        run(["git", "add", "."])
+
+        msg = f'auto update {datetime.now().strftime("%d-%m-%Y %H:%M")}'
+        run(["git", "commit", "-m", msg])
+
+        push = run(["git", "push", "origin", "main"])
+        print(push.stdout or push.stderr)
+    else:
+        print("🟡 No changes detected")
+
+    time.sleep(300)
