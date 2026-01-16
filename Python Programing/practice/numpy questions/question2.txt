@@ -1,0 +1,47 @@
+Split / Hsplit
+
+Split a 1D array of 12 elements into 4 equal parts.
+
+Split a 2D array of shape (4,8) into 4 column-wise arrays using hsplit.
+
+Split a 3D array of shape (2,4,6) along the last axis into 3 equal parts.
+
+Repeat / Tile
+
+Repeat each element of a 1D array [1,2,3] 3 times.
+
+Repeat rows of a 2D array [[1,2],[3,4]] twice using repeat.
+
+Tile a 1D array [1,2,3] 4 times.
+
+Tile a 2D array [[1,2],[3,4]] 2 times row-wise and 3 times column-wise.
+
+Repeat a 3D array of shape (1,2,2) along axis=1 twice using repeat.
+
+Cumsum
+
+Compute the cumulative sum of a 1D array [1,2,3,4,5].
+
+Compute row-wise and column-wise cumulative sum of a 2D array [[1,2,3],[4,5,6]].
+
+Compute cumulative sum along the last axis of a 3D array of shape (2,2,3).
+
+Conditional Operations / Masking
+
+Using np.where, replace all elements >10 in a 2D array with 0.
+
+Using np.argwhere, find indices of all even numbers in a 1D array of 20 elements.
+
+Using np.logical_and, select elements in a 1D array that are >5 AND <15.
+
+Using np.logical_or, select elements in a 2D array that are <3 OR >18.
+
+Using masking, replace all negative numbers in a 2D array with 0.
+
+For a 3D array of shape (2,3,4), use np.where to replace elements divisible by 3 with -1.
+
+Use np.logical_and on a 2D array to select elements between 7 and 12, then replace them with 99.
+
+Use np.logical_or on a 3D array to select elements <5 or >15, then set them to 0.
+
+Create a 1D array of 15 random integers and use masking to double all odd numbers.
