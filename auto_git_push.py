@@ -13,9 +13,9 @@ def auto_git_push():
 
             subprocess.run(["git", "push", "origin", "main"], check=True)
 
-            print("✅ Pushed at", datetime.now())
+            print("Pushed at", datetime.now())
         except subprocess.CalledProcessError:
-            print("⚠️ No changes to commit")
+            print("No changes to commit")
 
         time.sleep(300)  # 5 minutes
 
