@@ -1,0 +1,7 @@
+Python <-- 2 Days
+NumPy + pandas <-- 1 Days
+Matplotlib + Seaborn <-- 1 days
+SQL <-- 1 days
+Logging + multi-threading/processing <-- 1 days
+Flask + Streamlit <-- 1 days
+Memory management <-- 1 days
