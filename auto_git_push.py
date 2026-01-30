@@ -2,7 +2,7 @@ import subprocess
 import time
 from datetime import datetime
 
-print("🚀 Auto GitHub Push Started (SSH • Verbose Mode)")
+print("Auto GitHub Push Started (SSH • Verbose Mode)")
 
 INTERVAL = 300  # 5 minutes
 
