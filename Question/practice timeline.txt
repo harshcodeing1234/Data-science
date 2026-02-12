@@ -1,7 +1,9 @@
-Python <-- 2 Days
-NumPy + pandas <-- 1 Days
-Matplotlib + Seaborn <-- 1 days
-SQL <-- 1 days
-Logging + multi-threading/processing <-- 1 days
-Flask + Streamlit <-- 1 days
-Memory management <-- 1 days
+Python <-- 2 Days -- 1st week
+"NumPy + pandas <-- 1 Days
+Matplotlib + Seaborn <-- 1 days " -- 2nd week
+"SQL <-- 1 days" <-- 3rd week
+"Logging + multi-threading/processing <-- 1 days
+Memory management <-- 1 days" -- 4th week
+Flask + Streamlit <-- 2 days  -- 5th week
+"Feature engineering <-- 1 days
+Eda <-- 1 days " -- 6th week
